@@ -1,0 +1,100 @@
+{
+  "business": {
+    "name": "Bloom Aesthetics Clinic",
+    "tagline": "Your beauty, our expertise",
+    "hours": "Monday to Saturday, 9:00 AM – 7:00 PM",
+    "closed_on": "Sundays and UK public holidays",
+    "location": "Available on request; consultations can be virtual or in-clinic",
+    "contact": {
+      "whatsapp": "Available during business hours",
+      "website": "Booking available 24/7 via website",
+      "email": "Responded to within 1 business day"
+    }
+  },
+  "services": [
+    {
+      "name": "Botox",
+      "description": "Anti-wrinkle injections to smooth fine lines and wrinkles. Commonly used for forehead lines, frown lines, and crow's feet.",
+      "price_from": 200,
+      "currency": "GBP",
+      "duration": "30–45 minutes",
+      "results_last": "3–6 months",
+      "aftercare": "Avoid lying down for 4 hours, no heavy exercise same day"
+    },
+    {
+      "name": "Dermal Fillers",
+      "description": "Hyaluronic acid fillers used to restore volume, define lips, cheeks, and jawline.",
+      "price_from": 250,
+      "currency": "GBP",
+      "duration": "30–60 minutes",
+      "results_last": "6–18 months depending on area",
+      "aftercare": "Avoid extreme heat and pressure on treated areas for 24 hours"
+    },
+    {
+      "name": "Consultation",
+      "description": "A free, no-obligation consultation with a qualified aesthetic practitioner to discuss your goals and suitable treatments.",
+      "price": 0,
+      "currency": "GBP",
+      "duration": "Up to 30 minutes",
+      "note": "Recommended before any first treatment"
+    },
+    {
+      "name": "Skin Boosters",
+      "description": "Injectable hydration treatment to improve skin texture and radiance.",
+      "price_from": 180,
+      "currency": "GBP",
+      "duration": "30 minutes",
+      "results_last": "3–4 months"
+    },
+    {
+      "name": "Chemical Peels",
+      "description": "Superficial peels to improve skin tone, texture, and reduce pigmentation.",
+      "price_from": 80,
+      "currency": "GBP",
+      "duration": "20–30 minutes"
+    }
+  ],
+  "booking": {
+    "methods": ["WhatsApp", "Website"],
+    "cancellation_policy": "24-hour notice required for cancellations or rescheduling",
+    "late_cancellation_fee": "50% of treatment cost may be charged for cancellations under 24 hours",
+    "deposits": "A deposit may be required to secure your booking",
+    "availability": "Subject to practitioner availability; book early for peak times"
+  },
+  "faqs": [
+    {
+      "question": "Do I need a consultation before treatment?",
+      "answer": "A free consultation is recommended and available before any first treatment. It helps our practitioner understand your goals and recommend the most suitable option."
+    },
+    {
+      "question": "How long do results last?",
+      "answer": "Botox results typically last 3–6 months. Filler results vary by area and can last 6–18 months. We recommend follow-up treatments to maintain results."
+    },
+    {
+      "question": "Is it painful?",
+      "answer": "Most clients experience minimal discomfort. A topical numbing cream can be applied before treatment to improve comfort."
+    },
+    {
+      "question": "Are treatments safe?",
+      "answer": "All treatments are performed by qualified aesthetic practitioners. We prioritise patient safety and follow all regulatory guidelines."
+    },
+    {
+      "question": "Can I book same-day?",
+      "answer": "Same-day bookings may be available subject to practitioner availability. We recommend booking in advance to secure your preferred time."
+    }
+  ],
+  "escalation_triggers": [
+    "complaint or dissatisfaction",
+    "medical question or concern (allergies, contraindications, medications)",
+    "pricing negotiation or discount request",
+    "more than 2 questions the AI cannot answer from the SOP",
+    "explicit request to speak to a human",
+    "angry or distressed sentiment detected",
+    "safeguarding or emergency concern"
+  ],
+  "lead_qualification_questions": [
+    "Which treatment are you most interested in — Botox, Fillers, or something else?",
+    "Have you had aesthetic treatments before, or would this be your first time?",
+    "Are you looking to book for yourself, or making an enquiry on behalf of someone else?"
+  ]
+}

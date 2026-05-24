@@ -1,0 +1,38 @@
+[
+  {
+    "timestamp": "2026-05-24T03:58:11.615589Z",
+    "reason": "Medical question or concern (knee injury) that is outside the scope of our aesthetic treatments",
+    "conversation_length": 10,
+    "qualification_data": {}
+  },
+  {
+    "timestamp": "2026-05-24T04:06:43.199045Z",
+    "reason": "Unable to answer question from SOP",
+    "conversation_length": 4,
+    "qualification_data": {}
+  },
+  {
+    "timestamp": "2026-05-24T04:08:36.272577Z",
+    "reason": "medical question or concern",
+    "conversation_length": 2,
+    "qualification_data": {}
+  },
+  {
+    "timestamp": "2026-05-24T04:09:19.856123Z",
+    "reason": "customer expresses frustration and distress about their treatment results",
+    "conversation_length": 2,
+    "qualification_data": {}
+  },
+  {
+    "timestamp": "2026-05-24T04:30:02.911859Z",
+    "reason": "The customer asked about a treatment not listed in the SOP",
+    "conversation_length": 2,
+    "qualification_data": {}
+  },
+  {
+    "timestamp": "2026-05-24T04:30:40.837963Z",
+    "reason": "complaint or dissatisfaction",
+    "conversation_length": 2,
+    "qualification_data": {}
+  }
+]

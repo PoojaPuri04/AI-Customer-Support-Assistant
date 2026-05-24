@@ -1,0 +1,6 @@
+.env
+venv
+.boot
+boot
+__pycache__
+*.pyc               
