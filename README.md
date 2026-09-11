@@ -1,31 +1,126 @@
-# AI-Powered Customer Support Workflow
+# 🤖 AI Customer Support Assistant
 
-A Python CLI demonstrating a four-stage AI customer support workflow for **Bloom Aesthetics Clinic**.
+An AI-powered customer support assistant designed to automate customer interactions, answer business-specific questions, qualify potential leads, detect situations requiring human assistance, and generate structured conversation summaries.
 
----
-
-## What It Does
-
-| Stage | Description |
-|-------|-------------|
-| **1. FAQ Answering** | Answers inbound questions using only the SOP (`sop.json`). Never hallucinates. |
-| **2. Lead Qualification** | Asks 3 structured questions naturally within the conversation. |
-| **3. Escalation Detection** | Detects complaints, out-of-scope questions, angry sentiment, medical questions, pricing negotiation, and explicit human requests. Logs to `escalation_log.json`. |
-| **4. Conversation Summary** | Generates a structured JSON summary at session end: intent, key details, SOP gaps, next action, sentiment. |
+The project demonstrates how **Large Language Models (LLMs)** can be integrated with business SOPs to build a reliable and controlled customer-support workflow.
 
 ---
 
-## Project Structure
+## 📌 Overview
 
+The **AI Customer Support Assistant** is a Python-based conversational AI system that handles customer queries using predefined business information stored in an SOP.
+
+Instead of allowing the LLM to answer from unrestricted knowledge, the assistant is instructed to respond using the provided SOP. This helps reduce hallucinations and keeps responses aligned with business policies.
+
+The system also identifies situations where AI should not handle the conversation and automatically flags them for **human escalation**.
+
+---
+
+## 🎯 Objective
+
+The goal of this project is to build an AI-driven customer support workflow that can:
+
+* Answer customer FAQs using business-specific information
+* Reduce hallucinations by grounding responses in an SOP
+* Qualify potential customers through structured questions
+* Detect complaints, medical queries, negative sentiment, and unsupported questions
+* Escalate sensitive or out-of-scope conversations to a human
+* Generate structured summaries of customer conversations
+
+---
+
+## ⚙️ Tech Stack
+
+* **Python** – Core application development
+* **LangChain** – LLM integration and workflow orchestration
+* **Groq / OpenAI / Google Gemini** – LLM providers
+* **JSON** – SOP storage, escalation logs, and conversation summaries
+* **Prompt Engineering** – Controlling model behavior and structured responses
+* **python-dotenv** – Environment variable and API key management
+
+---
+
+## 🧠 System Architecture
+
+The workflow follows four main stages:
+
+### 1. FAQ Answering
+
+Customer questions are matched against information available in `sop.json`.
+
+The assistant generates responses based only on the available SOP information, reducing unsupported or hallucinated answers.
+
+### 2. Lead Qualification
+
+The assistant naturally collects important customer information through structured questions during the conversation.
+
+This helps identify the customer's requirements and potential interest in the available services.
+
+### 3. Escalation Detection
+
+The system detects conversations that require human intervention.
+
+Escalation can be triggered by:
+
+* Customer complaints
+* Angry or negative sentiment
+* Medical questions
+* Pricing negotiations
+* Explicit requests to speak with a human
+* Questions outside the available SOP
+* Multiple unanswered questions
+
+Escalation events are stored in `escalation_log.json`.
+
+### 4. Conversation Summary
+
+At the end of each session, the assistant generates a structured JSON summary containing:
+
+* Customer intent
+* Important conversation details
+* Lead qualification information
+* SOP knowledge gaps
+* Recommended next action
+* Customer sentiment
+
+---
+
+## 🔄 Workflow
+
+```text
+Customer Query
+      ↓
+AI Customer Support Assistant
+      ↓
+Business SOP (sop.json)
+      ↓
+FAQ / Query Analysis
+      ↓
+Lead Qualification
+      ↓
+Escalation Detection
+      ↓
+AI Response
+      ↓
+Conversation Summary
 ```
-agentic-sop-bot/
-├── main.py                   # Main workflow (CLI)
-├── sop.json                  # SOP data for Bloom Aesthetics Clinic
+
+---
+
+## 📁 Project Structure
+
+```text
+AI-Customer-Support-Assistant/
+│
+├── main.py
+├── sop.json
 ├── requirements.txt
-├── prompt_design.md          # Full prompt design and reasoning
+├── prompt_design.md
 ├── README.md
-├── escalation_log.json       # Auto-generated on escalation
-├── summary_*.json            # Auto-generated session summaries
+├── escalation_log.json
+│
+├── summary_*.json
+│
 └── test_transcripts/
     ├── 01_in_sop_question.md
     ├── 02_out_of_scope.md
@@ -36,100 +131,151 @@ agentic-sop-bot/
 
 ---
 
-## Setup
+## 🚀 Installation
 
-### Installation
+Clone the repository:
 
 ```bash
-git clone https://github.com/PoojaPuri04/agentic-sop-bot
-cd agentic-sop-bot
+git clone https://github.com/PoojaPuri04/AI-Customer-Support-Assistant.git
+cd AI-Customer-Support-Assistant
+```
+
+Install the required dependencies:
+
+```bash
 pip install -r requirements.txt
 ```
 
-### Set your API key
+Create a `.env` file and add the API key for your selected LLM provider.
 
+Example:
 
-Open .env and fill in your key. Groq is free and the easiest to get started with — grab a key at console.groq.com.
-GROQ_API_KEY=gsk_...
+```env
+GROQ_API_KEY=your_api_key
 PROVIDER=groq
 ```
 
 ---
 
-## Running the Workflow
+## ▶️ Run the Assistant
 
-### Interactive mode (recommended)
+Start the interactive customer-support assistant:
 
 ```bash
 python main.py
 ```
 
-Type your messages as a customer. Type `quit` or `exit` to end the session and generate the summary.
+You can then interact with the assistant directly from the terminal.
 
-### Replay a test transcript
+Type:
+
+```text
+quit
+```
+
+or
+
+```text
+exit
+```
+
+to end the conversation.
+
+A structured conversation summary will automatically be generated at the end of the session.
+
+---
+
+## 🧪 Testing
+
+The project contains sample conversation transcripts covering different customer-support scenarios, including:
+
+* FAQ questions
+* Out-of-scope queries
+* Angry customer escalation
+* Lead qualification
+* Conversation summarization
+
+A transcript can be replayed using:
 
 ```bash
 python main.py --transcript test_transcripts/01_in_sop_question.md
 ```
 
-This replays the user lines from the transcript file automatically, useful for regression testing.
+---
+
+## 📊 Output
+
+The system automatically generates structured output files.
+
+### Escalation Log
+
+```text
+escalation_log.json
+```
+
+Stores conversations that require human intervention.
+
+### Conversation Summary
+
+```text
+summary_YYYYMMDD_HHMMSS.json
+```
+
+Stores structured information about each completed customer conversation.
 
 ---
 
-## SOP Data
+## 💡 Key Features
 
-The AI operates **exclusively** from `sop.json`. It covers:
-
-- **Business:** Bloom Aesthetics Clinic
-- **Hours:** Mon–Sat, 9 AM–7 PM
-- **Services:** Botox (from £200), Fillers (from £250), Skin Boosters (from £180), Chemical Peels (from £80), Free Consultations
-- **Booking:** WhatsApp or website. 24-hour cancellation policy.
-- **Escalation triggers:** complaints, medical questions, pricing negotiation, out-of-scope, 2+ unanswered questions
-
-See `sop.json` for the full data structure.
-
----
-
-## Test Transcripts
-
-| File | Scenario | Pass Criteria |
-|------|----------|---------------|
-| `01_in_sop_question.md` | Customer asks about Botox pricing | Answers from SOP only; correct price |
-| `02_out_of_scope.md` | Customer asks about laser hair removal | Acknowledges gap; escalates |
-| `03_escalation_angry.md` | Customer complains about treatment | Sentiment detected; escalates immediately |
-| `04_lead_qualification.md` | Full qualification flow | 3 questions asked; summary populated |
-| `05_conversation_summary.md` | Normal session ending | Summary has all required fields |
+* AI-powered customer support
+* SOP-grounded responses
+* Reduced LLM hallucination
+* Automated FAQ handling
+* Lead qualification
+* Sentiment-aware escalation
+* Human escalation detection
+* Multi-LLM provider support
+* Structured JSON responses
+* Automated conversation summarization
+* Conversation logging
 
 ---
 
-## Output Files
+## 🔐 Reliability and Safety
 
-| File | Description |
-|------|-------------|
-| `escalation_log.json` | Appended every time an escalation occurs |
-| `summary_YYYYMMDD_HHMMSS.json` | Saved at end of every session |
+The assistant uses controlled prompting and SOP-based responses rather than allowing unrestricted LLM answers.
 
----
+Sensitive or unsupported requests can be escalated to a human instead of generating potentially unreliable responses.
 
-## Design Decisions and Trade-offs
-
-See [`prompt_design.md`](./prompt_design.md) for the full write-up. Key decisions:
-
-**JSON-only responses from Claude** — every turn returns a structured object. This makes escalation detection deterministic and removes ambiguity from application logic.
-
-**Full SOP injection** — the entire `sop.json` is embedded in the system prompt. For this SOP size, full injection is more reliable than RAG (no retrieval errors, no partial context).
-
-**Rule-based escalation** — rather than using a numeric confidence score (which LLMs can't reliably self-report), escalation is triggered by explicit rule matching: sentiment, topic type, and service coverage. More predictable for safety-critical decisions.
-
-**Known limitations:**
-- No persistence across sessions (each session is self-contained; summaries are saved to JSON)
-- SOP is injected in full — if the SOP grows beyond ~10k tokens, RAG would be more efficient
-- No streaming — responses arrive all at once; production would use streaming for better UX
-- No authentication or rate limiting — appropriate for CLI demo scope
+This approach makes the workflow more suitable for customer-support applications where predictable AI behavior is important.
 
 ---
 
-## Dependencies
+## ⚠️ Limitations
 
-- langchain, langchain-groq, langchain-google-genai, langchain-openai
-- python-dotenv
+* Conversations are currently session-based
+* Business knowledge is directly loaded from the SOP
+* Large SOP datasets would benefit from a RAG-based retrieval system
+* The current implementation uses a CLI interface
+* Authentication and rate limiting are not implemented
+
+---
+
+## 🔮 Future Improvements
+
+Future versions could include:
+
+* RAG-based SOP retrieval for larger knowledge bases
+* Vector database integration
+* Web-based chat interface
+* Persistent conversation memory
+* Customer database/CRM integration
+* Real-time streaming responses
+* Analytics dashboard for customer interactions
+* Advanced sentiment analysis
+
+---
+
+## 📌 Project Purpose
+
+This project demonstrates the practical implementation of **LLMs, prompt engineering, LangChain, structured outputs, business knowledge grounding, and AI workflow automation** for building an intelligent customer-support system.
